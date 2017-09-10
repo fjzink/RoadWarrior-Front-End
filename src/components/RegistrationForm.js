@@ -3,13 +3,13 @@ import { View } from 'react-native';
 import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
 
-class LoginForm extends Component {
-  state = { email: '', password: '' };
+class RegistrationForm extends Component {
+  state = { username: '', email: '', password: '' };
 
   onButtonPress() {
-    const { email, password } = this.state;
+    const { username, email, password } = this.state;
 
-    axios.post('http://localhost:3000/api/login', { email, password })
+    axios.post('http://localhost:3000/api/users', { username, email, password })
       .then(response => {
         console.log(response);
       });
@@ -18,8 +18,17 @@ class LoginForm extends Component {
   render() {
     return (
       <View>
-        <Header headerText="Log in" />
+        <Header headerText="Register" />
         <Card>
+          <CardSection>
+            <Input
+            placeholder="username"
+            label="Username"
+            value={this.state.username}
+            onChangeText={username => this.setState({ username })}
+            />
+          </CardSection>
+
           <CardSection>
             <Input
             placeholder="user@email.com"
@@ -58,4 +67,4 @@ const styles = {
   }
 };
 
-export default LoginForm;
+export default RegistrationForm;
