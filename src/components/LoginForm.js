@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Card, CardSection, Input, Text } from './common';
 import axios from 'axios';
+import { Button, Card, CardSection, Input, Text } from './common';
 
 class LoginForm extends Component {
   state = { email: '', password: '', error: '' };
@@ -8,8 +8,8 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, password } = this.state;
 
-    axios.post('/user', { email: email, password: password})
-      .then(function(response) {
+    axios.post('/user', { email, password })
+      .then(response => {
         console.log(response);
       });
   }
@@ -35,10 +35,6 @@ class LoginForm extends Component {
           onChangeText={password => this.setState({ password })}
           />
         </CardSection>
-
-        <Text style={styles.errorTextStyle}>
-          {this.state.error}
-        </Text>
 
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
