@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import { Button, Card, CardSection, Input } from './common';
+import { Button, Card, CardSection, Input, Text } from './common';
+import axios from 'axios';
 
 class LoginForm extends Component {
-  state = { email: '', password: '' };
+  state = { email: '', password: '', error: '' };
 
   onButtonPress() {
     const { email, password } = this.state;
 
-
+    axios.post('/user', { email: email, password: password})
+      .then(function(response) {
+        console.log(response);
+      });
   }
 
   render() {
@@ -32,6 +36,10 @@ class LoginForm extends Component {
           />
         </CardSection>
 
+        <Text style={styles.errorTextStyle}>
+          {this.state.error}
+        </Text>
+
         <CardSection>
           <Button onPress={this.onButtonPress.bind{this}}>
             Log in
@@ -41,5 +49,13 @@ class LoginForm extends Component {
     );
   }
 }
+
+const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
 
 export default LoginForm;
