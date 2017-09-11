@@ -20,7 +20,6 @@ class RegistrationForm extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
 
     return (
       <View>
@@ -59,7 +58,6 @@ class RegistrationForm extends Component {
               Log in
             </Button>
           </CardSection>
-
         </Card>
       </View>
     );
