@@ -10,8 +10,4 @@ const App = StackNavigator({
   Register: { screen: RegistrationForm }
 });
 
-<App 
-  screenProps={{access_token: '¯\_(ツ)_/¯'}}
-/>
-
 export default App;
