@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import LoginForm from './components/LoginForm';
+import RegistrationForm from './components/RegistrationForm';
 
-class App extends Component {
-  render() {
-    return (
-      <View>
-        <LoginForm />
-      </View>
-    );
-  }
-}
+const App = StackNavigator({
+  Login: { screen: LoginForm },
+  Register: { screen: RegistrationForm }
+});
 
 export default App;

@@ -4,6 +4,10 @@ import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
 
 class RegistrationForm extends Component {
+  static navigationOptions = {
+    title: 'Register',
+  }
+
   state = { username: '', email: '', password: '' };
 
   onButtonPress() {
@@ -16,6 +20,8 @@ class RegistrationForm extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View>
         <Header headerText="Register" />
@@ -53,6 +59,7 @@ class RegistrationForm extends Component {
               Log in
             </Button>
           </CardSection>
+
         </Card>
       </View>
     );

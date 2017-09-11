@@ -4,6 +4,10 @@ import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
+
   state = { email: '', password: '' };
 
   onButtonPress() {
@@ -18,7 +22,6 @@ class LoginForm extends Component {
   render() {
     return (
       <View>
-        <Header headerText="Log in" />
         <Card>
           <CardSection>
             <Input
@@ -44,11 +47,13 @@ class LoginForm extends Component {
               Log in
             </Button>
           </CardSection>
+
         </Card>
       </View>
     );
   }
 }
+
 
 const styles = {
   errorTextStyle: {
