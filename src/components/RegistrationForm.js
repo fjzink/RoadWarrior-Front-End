@@ -1,29 +1,46 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
+import { navigation } from 'react-navigation';
 
 class RegistrationForm extends Component {
-  static navigationOptions = {
-    title: 'Register',
-  }
+  static navigationOptions = ({ navigation }) => ({
+    // getButts(navigation.state.params.butts),
+    title: `Register`,
+  });
 
-  state = { username: '', email: '', password: '' };
+  constructor(props) {
+    super();
+    this.state = {
+      // props.navigation.state.params.butts
+      username: '',
+      email: '',
+      password: '',
+      errors: [],
+    };
+    this.onButtonPress = this.onButtonPress.bind(this);
+  }
 
   onButtonPress() {
     const { username, email, password } = this.state;
+    const { navigate } = this.props.navigation;
 
     axios.post('http://localhost:3000/api/users', { username, email, password })
       .then(response => {
-        console.log(response);
-      });
+        if (response.data.status == "SUCCESS") {
+          navigate("Map", {accessToken: response.data.accessToken})
+        } else {
+          this.setState({ errors: response.data.errors })
+        }
+      })
+      .catch( error => console.log(error) );
   }
 
   render() {
 
     return (
       <View>
-        <Header headerText="Register" />
         <Card>
           <CardSection>
             <Input
@@ -54,9 +71,16 @@ class RegistrationForm extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onButtonPress.bind(this)}>
-              Log in
-            </Button>
+            {this.state.errors.map(function(error) {
+              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>
+            })}
+          </CardSection>
+
+          <CardSection>
+            <Button onPress={this.onButtonPress}>
+              Register
+            </Button> 
+
           </CardSection>
         </Card>
       </View>

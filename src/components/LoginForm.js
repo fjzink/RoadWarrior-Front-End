@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
 
 class LoginForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      passsword: '',
+      errors: [],
+    };
+
+    this.onButtonPress = this.onButtonPress.bind(this);
+  }
+
+
   static navigationOptions = {
     title: 'Login'
   }
 
-  state = { email: '', password: '' };
-
   onButtonPress() {
     const { email, password } = this.state;
+    const { navigate } = this.props.navigation;
+
 
     axios.post('http://localhost:3000/api/login', { email, password })
       .then(response => {
         console.log(response);
+        if (response.data.status == "SUCCESS") {
+          navigate("Map", {accessToken: response.data.accessToken})
+        } else {
+          this.setState({ errors: response.data.errors })
+        }
       })
-      .then(this.props.navigation.navigate('Map'))
       .catch(error => console.log(error));
   }
 
@@ -48,16 +64,21 @@ class LoginForm extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onButtonPress.bind(this)}>
+            {this.state.errors.map(function(error) {
+              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>
+            })}
+          </CardSection>
+
+          <CardSection>
+            <Button onPress={this.onButtonPress}>
               Login
             </Button>
           </CardSection>
 
           <CardSection>
             <Button
-                onPress={() => navigate('Register')}
-            >
-               Not logged in? Register ;)
+                onPress={() => navigate('Register', { butts: 'butts'})} >
+              Register now.
             </Button>
           </CardSection>
 
