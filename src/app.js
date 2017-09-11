@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import LoginForm from './components/LoginForm';
+import RegistrationForm from './components/RegistrationForm';
+import MapScreen from './components/MapScreen';
 
-class App extends Component {
-  render() {
-    return (
-      <View>
-        <LoginForm />
-      </View>
-    );
-  }
-}
+const App = StackNavigator({
+  Login: { screen: LoginForm },
+  Map: { screen: MapScreen },
+  Register: { screen: RegistrationForm }
+});
 
 export default App;

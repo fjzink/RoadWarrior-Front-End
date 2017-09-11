@@ -4,6 +4,10 @@ import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
+
   state = { email: '', password: '' };
 
   onButtonPress() {
@@ -12,13 +16,17 @@ class LoginForm extends Component {
     axios.post('http://localhost:3000/api/login', { email, password })
       .then(response => {
         console.log(response);
-      });
+      })
+      .then(this.props.navigation.navigate('Map'))
+      .catch(error => console.log(error));
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
+
     return (
       <View>
-        <Header headerText="Log in" />
         <Card>
           <CardSection>
             <Input
@@ -41,14 +49,24 @@ class LoginForm extends Component {
 
           <CardSection>
             <Button onPress={this.onButtonPress.bind(this)}>
-              Log in
+              Login
             </Button>
           </CardSection>
+
+          <CardSection>
+            <Button
+                onPress={() => navigate('Register')}
+            >
+               Not logged in? Register ;)
+            </Button>
+          </CardSection>
+
         </Card>
       </View>
     );
   }
 }
+
 
 const styles = {
   errorTextStyle: {
