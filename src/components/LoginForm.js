@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import axios from 'axios';
-import { Button, Card, CardSection, Input, Header } from './common';
+import { Button, Card, CardSection, Input } from './common';
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -73,7 +73,7 @@ class LoginForm extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={() => navigate('Register', { butts: 'butts' })}>
+            <Button onPress={() => navigate('Register')}>
               Register now.
             </Button>
           </CardSection>
