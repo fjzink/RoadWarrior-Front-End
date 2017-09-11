@@ -4,20 +4,29 @@ import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
 
 class LoginForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      passsword: '',
+    };
+
+    this.onButtonPress = this.onButtonPress.bind(this);
+  }
+
+
   static navigationOptions = {
     title: 'Login'
   }
-
-  state = { email: '', password: '' };
 
   onButtonPress() {
     const { email, password } = this.state;
 
     axios.post('http://localhost:3000/api/login', { email, password })
       .then(response => {
-        console.log(response);
+        console.log(response.data);
       })
-      .then(this.props.navigation.navigate('Map'))
+      .then(this.props.navigation.navigate('Map', {}))
       .catch(error => console.log(error));
   }
 
@@ -48,16 +57,15 @@ class LoginForm extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onButtonPress.bind(this)}>
+            <Button onPress={this.onButtonPress}>
               Login
             </Button>
           </CardSection>
 
           <CardSection>
             <Button
-                onPress={() => navigate('Register')}
-            >
-               Not logged in? Register ;)
+                onPress={() => navigate('Register', { butts: 'butts'})} >
+              Register now.
             </Button>
           </CardSection>
 

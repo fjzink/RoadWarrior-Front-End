@@ -7,6 +7,14 @@ class MapScreen extends Component {
     title: 'Map',
   }
 
+  constructor(props) {
+    super();
+    this.state = {
+      accessToken: props.navigation.state.params.accessToken
+    }
+
+  }
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -16,18 +24,6 @@ class MapScreen extends Component {
         <Card>
           <CardSection>
             <Text>MaaaaaaAP</Text>
-          </CardSection>
-
-          <CardSection>
-            <Button onPress={() => navigate('Login')}>
-              Login
-            </Button>
-          </CardSection>
-
-          <CardSection>
-            <Button onPress={() => navigate('Register')}>
-              Register
-            </Button>
           </CardSection>
         </Card>
       </View>
