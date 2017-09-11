@@ -74,7 +74,13 @@ class LoginForm extends Component {
 
           <CardSection>
             <Button onPress={() => navigate('Register')}>
-              Register now.
+              Register now
+            </Button>
+          </CardSection>
+
+          <CardSection>
+            <Button onPress={() => navigate('Map', {accessToken: ''})}>
+              Continue as a guest
             </Button>
           </CardSection>
 
