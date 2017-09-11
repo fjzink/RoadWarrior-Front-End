@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import Header from './components/common/Header';
+import { StackNavigator } from 'react-navigation';
+import LoginForm from './components/LoginForm';
+import RegistrationForm from './components/RegistrationForm';
+import MapScreen from './components/MapScreen';
 
-class App extends Component {
-  render() {
-    return (
-      <View>
-        <Header headerText="Authentication" />
-        <Text>An app!</Text>
-      </View>
-    );
-  }
-}
+const App = StackNavigator({
+  Login: { screen: LoginForm },
+  Map: { screen: MapScreen },
+  Register: { screen: RegistrationForm }
+});
 
 export default App;
