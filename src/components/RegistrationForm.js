@@ -17,6 +17,7 @@ class RegistrationForm extends Component {
       username: '',
       email: '',
       password: '',
+      errors: [],
     };
     this.onButtonPress = this.onButtonPress.bind(this);
   }
@@ -27,11 +28,13 @@ class RegistrationForm extends Component {
 
     axios.post('http://localhost:3000/api/users', { username, email, password })
       .then(response => {
-        navigate("Map", {accessToken: response.data.accessToken})
+        if (response.data.status == "SUCCESS") {
+          navigate("Map", {accessToken: response.data.accessToken})
+        } else {
+          this.setState({ errors: response.data.errors })
+        }
       })
-      .catch( error => 
-        console.log(error)
-      );
+      .catch( error => console.log(error) );
   }
 
   render() {
@@ -65,6 +68,12 @@ class RegistrationForm extends Component {
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
             />
+          </CardSection>
+
+          <CardSection>
+            {this.state.errors.map(function(error) {
+              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>
+            })}
           </CardSection>
 
           <CardSection>

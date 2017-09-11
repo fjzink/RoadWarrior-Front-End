@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import axios from 'axios';
 import { Button, Card, CardSection, Input, Header } from './common';
 
@@ -9,6 +9,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       passsword: '',
+      errors: [],
     };
 
     this.onButtonPress = this.onButtonPress.bind(this);
@@ -21,12 +22,18 @@ class LoginForm extends Component {
 
   onButtonPress() {
     const { email, password } = this.state;
+    const { navigate } = this.props.navigation;
+
 
     axios.post('http://localhost:3000/api/login', { email, password })
       .then(response => {
-        console.log(response.data);
+        console.log(response);
+        if (response.data.status == "SUCCESS") {
+          navigate("Map", {accessToken: response.data.accessToken})
+        } else {
+          this.setState({ errors: response.data.errors })
+        }
       })
-      .then(this.props.navigation.navigate('Map', {}))
       .catch(error => console.log(error));
   }
 
@@ -54,6 +61,12 @@ class LoginForm extends Component {
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
             />
+          </CardSection>
+
+          <CardSection>
+            {this.state.errors.map(function(error) {
+              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>
+            })}
           </CardSection>
 
           <CardSection>
