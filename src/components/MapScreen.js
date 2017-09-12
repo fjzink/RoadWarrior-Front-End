@@ -13,10 +13,8 @@ class MapScreen extends Component {
     this.state = {
       accessToken: props.navigation.state.params.accessToken,
       search: '',
-      location: ''
+      location: '',
     };
-
-    this.yelpSearch = this.yelpSearch.bind(this);
   }
 
   yelpSearch() {
@@ -28,13 +26,12 @@ class MapScreen extends Component {
       headers: { authorization: 'Bearer wtE8XDeiJULwkLUzO5z8_ZCGuMvnOMwVojZfWDTEXAAq5w5DqT7aF294pBuDY7SaKAjk7fSORTo0gjR4XiUhr2vBYJL4IPScLJffkvslOfuCp60CQbUTUEyzrv2xWXYx' }
     })
     .then(response => {
-      console.log(response);
+      console.log(response.data);
     });
   }
 
   render() {
     return (
-
       <View>
         <Card>
           <CardSection>
@@ -56,7 +53,7 @@ class MapScreen extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.yelpSearch()}>
+            <Button onPress={this.yelpSearch}>
               Search
             </Button>
           </CardSection>
