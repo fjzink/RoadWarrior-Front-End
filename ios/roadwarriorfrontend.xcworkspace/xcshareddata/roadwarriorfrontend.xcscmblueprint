@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4D6914A4B9380A2E13C4A530C52FA99BBA3689D7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4D6914A4B9380A2E13C4A530C52FA99BBA3689D7" : 9223372036854775807,
+    "FFB740DC70EAF96105D2C92F6F92BE7881F0A0BA" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A8E8EE69-82E8-462E-A91A-0E5D5A8ABF66",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4D6914A4B9380A2E13C4A530C52FA99BBA3689D7" : "RoadWarrior-Front-End\/",
+    "FFB740DC70EAF96105D2C92F6F92BE7881F0A0BA" : "react-native-map\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "roadwarriorfrontend",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios\/roadwarriorfrontend.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/fjzink\/RoadWarrior-Front-End.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4D6914A4B9380A2E13C4A530C52FA99BBA3689D7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nickell75\/react-native-map.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FFB740DC70EAF96105D2C92F6F92BE7881F0A0BA"
+    }
+  ]
+}
