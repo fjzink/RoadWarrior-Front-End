@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import axios from 'axios';
-import { Button, Card, CardSection, Input, Header } from './common';
+import { Button, Card, CardSection, Input } from './common';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
   constructor() {
     super();
     this.state = {
@@ -15,23 +18,17 @@ class LoginForm extends Component {
     this.onButtonPress = this.onButtonPress.bind(this);
   }
 
-
-  static navigationOptions = {
-    title: 'Login'
-  }
-
   onButtonPress() {
     const { email, password } = this.state;
     const { navigate } = this.props.navigation;
 
-
     axios.post('http://localhost:3000/api/login', { email, password })
       .then(response => {
         console.log(response);
-        if (response.data.status == "SUCCESS") {
-          navigate("Map", {accessToken: response.data.accessToken})
+        if (response.data.status === 'SUCCESS') {
+          navigate('Map', { accessToken: response.data.accessToken });
         } else {
-          this.setState({ errors: response.data.errors })
+          this.setState({ errors: response.data.errors });
         }
       })
       .catch(error => console.log(error));
@@ -64,8 +61,8 @@ class LoginForm extends Component {
           </CardSection>
 
           <CardSection>
-            {this.state.errors.map(function(error) {
-              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>
+            {this.state.errors.map((error) => {
+              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>;
             })}
           </CardSection>
 
@@ -76,9 +73,14 @@ class LoginForm extends Component {
           </CardSection>
 
           <CardSection>
-            <Button
-                onPress={() => navigate('Register', { butts: 'butts'})} >
-              Register now.
+            <Button onPress={() => navigate('Register')}>
+              Register now
+            </Button>
+          </CardSection>
+
+          <CardSection>
+            <Button onPress={() => navigate('Map', {accessToken: ''})}>
+              Continue as a guest
             </Button>
           </CardSection>
 

@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import axios from 'axios';
-import { Button, Card, CardSection, Input, Header } from './common';
+import { Button, Card, CardSection, Input } from './common';
 import { navigation } from 'react-navigation';
 
 class RegistrationForm extends Component {
   static navigationOptions = ({ navigation }) => ({
     // getButts(navigation.state.params.butts),
-    title: `Register`,
+    title: 'Register',
   });
 
   constructor(props) {
     super();
     this.state = {
-      // props.navigation.state.params.butts
       username: '',
       email: '',
       password: '',
@@ -28,17 +27,16 @@ class RegistrationForm extends Component {
 
     axios.post('http://localhost:3000/api/users', { username, email, password })
       .then(response => {
-        if (response.data.status == "SUCCESS") {
-          navigate("Map", {accessToken: response.data.accessToken})
+        if (response.data.status === 'SUCCESS') {
+          navigate('Map', { accessToken: response.data.accessToken });
         } else {
-          this.setState({ errors: response.data.errors })
+          this.setState({ errors: response.data.errors });
         }
       })
-      .catch( error => console.log(error) );
+      .catch(error => console.log(error));
   }
 
   render() {
-
     return (
       <View>
         <Card>
@@ -71,15 +69,15 @@ class RegistrationForm extends Component {
           </CardSection>
 
           <CardSection>
-            {this.state.errors.map(function(error) {
-              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>
+            {this.state.errors.map((error) => {
+              return <Text key={error} style={styles.errorTextStyle}>{error}</Text>;
             })}
           </CardSection>
 
           <CardSection>
             <Button onPress={this.onButtonPress}>
               Register
-            </Button> 
+            </Button>
 
           </CardSection>
         </Card>
